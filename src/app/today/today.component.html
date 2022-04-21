@@ -1,0 +1,826 @@
+<body>
+  <div class="main-container">
+
+      <!-- LEFT-CONTAINER -->
+      <div class="left-container container">
+       <!-- PROFILE (MIDDLE-CONTAINER) -->
+        <div class="profile block"> 
+       <br>
+          <div class="profile-picture big-profile-picture clear">
+              <img width="150px" alt="Anne Hathaway picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5aCbFqcKV_hESU4vVvpnnD2zexlxsAoTWdA9PKLvJY-MHLQCzlG7A9rOEM4nQoHrQnsw&usqp=CAU" >
+          </div>
+          <h1 class="user-name">Weather dashboard</h1>
+          <h2 class="user-name"><span class="icon entypo-location"></span><br>{{weather.name}}, {{weather.sys.country}} </h2>
+          <div class="profile-description">
+          </div>
+      </div>
+      <!-- SOCIAL (LEFT-CONTAINER) -->
+          <ul class="social horizontal-list block"> 
+            <div class="account2"> 
+                <div class="elright">
+                    <p class="current-day-date1">Humidity : {{weather.main.humidity}}</p>
+                </div>
+         <div class="elcontainer1">
+            <div class="svg-contain">
+                <svg class="fog-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 68 52.6" style="enable-background:new 0 0 68 52.6;" xml:space="preserve">
+            <g id="Layer_1">
+                <g>
+                    <path class="cloud st3" d="M62.8,29.3c0-5.2-4.2-9.4-9.4-9.4c-0.2,0-0.4,0.1-0.7,0.1c-0.1-0.9-0.2-1.8-0.5-2.7c-0.3-1.1-0.9-2.2-1.5-3.1
+                    C48.6,11,44.9,9,40.8,9c-2.5,0-4.8,0.7-6.7,2c-0.6,0.4-1.2,0.9-1.8,1.5c-0.3,0.3-0.5,0.6-0.8,0.8c-0.2,0.3-0.5,0.6-0.7,0.9
+                    c-1.9-1.3-4.2-2.1-6.7-2.1c-6,0-10.9,4.4-11.8,10.1c-3.8,1.1-6.7,4.3-7.2,8.3h28.7h13.9h14.1h0.8C62.7,30.6,62.8,30.1,62.8,29.3z"
+                    />
+                <path class="fog-line big-path" d="M7.3,28.8h12.4"/>
+                <path class="fog-line big-path" d="M23.5,28.8h38.4"/>
+                <path class="fog-line big-path" d="M57.3,32.6h5.2"/>
+                <path class="fog-line big-path" d="M31.2,32.6h22.1"/>
+                <path class="fog-line big-path" d="M6.2,32.6h21.1"/>
+                <path class="fog-line big-path" d="M11.4,43.6H6.2"/>
+                <path class="fog-line big-path" d="M37.5,43.6H15.4"/>
+                <path class="fog-line big-path" d="M62.5,43.6H41.4"/>
+                <path class="fog-line big-path" d="M6.2,36.4h2.1"/>
+                <path class="fog-line big-path" d="M11.9,36.4h6"/>
+                <path class="fog-line big-path" d="M21.8,36.4h20.4"/>
+                <path class="fog-line big-path" d="M46.3,36.4h16.1"/>
+                <path class="fog-line big-path" d="M55.2,40.2h7.3"/>
+                <path class="fog-line big-path" d="M48.3,40.2h2.8"/>
+                <path class="fog-line big-path" d="M37.3,40.2H44"/>
+                <path class="fog-line big-path" d="M18.3,40.2h15.3"/>
+                <path class="fog-line big-path" d="M6.2,40.2h8"/>
+                </g>
+            </g>
+            </svg>
+              </div>
+              </div>
+          
+         </div>
+              
+          </ul>
+
+        <!-- LOADING (RIGHT-CONTAINER) -->
+          <div class="loading1"> 
+            <div class="container1">
+                <div id="divchart">
+                  <canvas id="myChart" >
+                    </canvas>
+                </div>
+                </div> 
+        </div>
+      </div>
+      
+
+      <!-- MIDDLE-CONTAINER -->
+      <div class="middle-container container">
+         
+          <div class="weather block clear"> <!-- WEATHER (MIDDLE-CONTAINER) -->
+            
+            <p class="titular"><br>SKY: <br> {{weather.weather[0].description}}
+            </p>
+            
+            <div class="current-day">
+                <p class="current-day-date">Temperature max/min : <br></p>
+                <p class="current-day-temperature">{{weather.main.temp_max}}F /{{weather.main.temp_min}}F </p>
+            </div>
+          </div>
+        <br>
+        <div class="loading block"> <!-- LOADING (RIGHT-CONTAINER) -->
+          <!-- <h6 class="chartcenter">Select the city to populate the chart:</h6> -->
+            <div class="container1">
+                <div id="divchart">
+                  <canvas id="mybarChart" >
+                    </canvas>
+                </div>
+                </div> 
+        </div>        
+      </div>
+
+      <!-- RIGHT-CONTAINER -->
+      <div class="right-container container">
+          <div class="join-newsletter block"> 
+              <h2 class="titular"><br>Select the required city to populate the chart</h2>
+              <div class="input-container">
+                <!-- <input class="form-control" type="text" #userinput placeholder="city name"> -->
+                <mat-form-field>
+                <mat-select class ="form-control" #userinput formControlName="userinput" placeholder = "enter city">
+            <mat-option value="Ahmedabad">Ahmedabad</mat-option>
+             <mat-option value="Ahmednagar">Ahmednagar</mat-option>
+              <mat-option value="Aizawl">Aizawl</mat-option>
+               <mat-option value="Ajitgarh(Mohali)">Ajitgarh (Mohali)</mat-option>
+                <mat-option value="Ajmer">Ajmer</mat-option>
+                 <mat-option value="Akola">Akola</mat-option> 
+                 <mat-option value="Alappuzha">Alappuzha</mat-option>
+                  <mat-option value="Aligarh">Aligarh</mat-option> 
+                  <mat-option value="Alirajpur">Alirajpur</mat-option> 
+                  <mat-option value="Allahabad">Allahabad</mat-option> 
+                  <mat-option value="Almora">Almora</mat-option> 
+                  <mat-option value="Alwar">Alwar</mat-option> 
+                  <mat-option value="Ambala">Ambala</mat-option>
+                   <mat-option value="AmbedkarNagar">Ambedkar Nagar</mat-option>
+                    <mat-option value="Amravati">Amravati</mat-option>
+                     <mat-option value="Amrelidistrict">Amreli district</mat-option>
+                      <mat-option value="Amritsar">Amritsar</mat-option>
+                       <mat-option value="Anand">Anand</mat-option>
+                       <mat-option value="Anantapur">Anantapur</mat-option>
+                       <mat-option value="Anantnag">Anantnag</mat-option>
+                       <mat-option value="Angul">Angul</mat-option> 
+                       <mat-option value="Anjaw">Anjaw</mat-option> 
+                       <mat-option value="Anuppur">Anuppur</mat-option> 
+                       <mat-option value="Araria">Araria</mat-option> 
+                       <mat-option value="Ariyalur">Ariyalur</mat-option> 
+                       <mat-option value="Arwal">Arwal</mat-option> 
+                       <mat-option value="AshokNagar">Ashok Nagar</mat-option> 
+                       <mat-option value="Auraiya">Auraiya</mat-option> 
+                       <mat-option value="Aurangabad">Aurangabad</mat-option> 
+                       <mat-option value="Aurangabad">Aurangabad</mat-option> 
+                       <mat-option value="Azamgarh">Azamgarh</mat-option> 
+                       <mat-option value="Badgam">Badgam</mat-option> 
+                       <mat-option value="Bagalkot">Bagalkot</mat-option> 
+                       <mat-option value="Bageshwar">Bageshwar</mat-option> 
+                       <mat-option value="Bagpat">Bagpat</mat-option> 
+                       <mat-option value="Bahraich">Bahraich</mat-option> 
+                       <mat-option value="Baksa">Baksa</mat-option> 
+                       <mat-option value="Balaghat">Balaghat</mat-option> 
+                       <mat-option value="Balangir">Balangir</mat-option> 
+                       <mat-option value="Balasore">Balasore</mat-option> 
+                       <mat-option value="Ballia">Ballia</mat-option> 
+                       <mat-option value="Balrampur">Balrampur</mat-option> 
+                       <mat-option value="Banaskantha">Banaskantha</mat-option> 
+                       <mat-option value="Banda">Banda</mat-option> 
+                       <mat-option value="Bandipora">Bandipora</mat-option> 
+                       <mat-option value="BangaloreRural">Bangalore Rural</mat-option> 
+                       <mat-option value="BangaloreUrban">Bangalore Urban</mat-option> 
+                       <mat-option value="Banka">Banka</mat-option> 
+                       <mat-option value="Bankura">Bankura</mat-option> 
+                       <mat-option value="Banswara">Banswara</mat-option> 
+                       <mat-option value="Barabanki">Barabanki</mat-option> 
+                       <mat-option value="Baramulla">Baramulla</mat-option> 
+                       <mat-option value="Baran">Baran</mat-option> 
+                       <mat-option value="Bardhaman">Bardhaman</mat-option> 
+                       <mat-option value="Bareilly">Bareilly</mat-option> 
+                       <mat-option value="Bargarh(Baragarh)">Bargarh (Baragarh)</mat-option> 
+                       <mat-option value="Barmer">Barmer</mat-option> 
+                       <mat-option value="Barnala">Barnala</mat-option> 
+                       <mat-option value="Barpeta">Barpeta</mat-option> 
+                       <mat-option value="Barwani">Barwani</mat-option> 
+                       <mat-option value="Bastar">Bastar</mat-option> 
+                       <mat-option value="Basti">Basti</mat-option> 
+                       <mat-option value="Bathinda">Bathinda</mat-option> 
+                       <mat-option value="Beed">Beed</mat-option> 
+                       <mat-option value="Begusarai">Begusarai</mat-option> 
+                       <mat-option value="Belgaum">Belgaum</mat-option> 
+                       <mat-option value="Bellary">Bellary</mat-option> 
+                       <mat-option value="Betul">Betul</mat-option> 
+                       <mat-option value="Bhadrak">Bhadrak</mat-option> 
+                       <mat-option value="Bhagalpur">Bhagalpur</mat-option> 
+                       <mat-option value="Bhandara">Bhandara</mat-option> 
+                       <mat-option value="Bharatpur">Bharatpur</mat-option> 
+                       <mat-option value="Bharuch">Bharuch</mat-option> 
+                       <mat-option value="Bhavnagar">Bhavnagar</mat-option> 
+                       <mat-option value="Bhilwara">Bhilwara</mat-option> 
+                       <mat-option value="Bhind">Bhind</mat-option> 
+                       <mat-option value="Bhiwani">Bhiwani</mat-option> 
+                       <mat-option value="Bhojpur">Bhojpur</mat-option> 
+                       <mat-option value="Bhopal">Bhopal</mat-option> 
+                       <mat-option value="Bidar">Bidar</mat-option> 
+                       <mat-option value="Bijapur">Bijapur</mat-option> 
+                       <mat-option value="Bijapur">Bijapur</mat-option> 
+                       <mat-option value="Bijnor">Bijnor</mat-option> 
+                       <mat-option value="Bikaner">Bikaner</mat-option> 
+                       <mat-option value="Bilaspur">Bilaspur</mat-option> 
+                       <mat-option value="Bilaspur">Bilaspur</mat-option> 
+                       <mat-option value="Birbhum">Birbhum</mat-option> 
+                       <mat-option value="Bishnupur">Bishnupur</mat-option> 
+                       <mat-option value="Bokaro">Bokaro</mat-option> 
+                       <mat-option value="Bongaigaon">Bongaigaon</mat-option> 
+                       <mat-option value="Boudh(Bauda)">Boudh (Bauda)</mat-option> 
+                       <mat-option value="Budaun">Budaun</mat-option> 
+                       <mat-option value="Bulandshahr">Bulandshahr</mat-option> 
+                       <mat-option value="Buldhana">Buldhana</mat-option> 
+                       <mat-option value="Bundi">Bundi</mat-option> 
+                       <mat-option value="Burhanpur">Burhanpur</mat-option> 
+                       <mat-option value="Buxar">Buxar</mat-option> 
+                       <mat-option value="Cachar">Cachar</mat-option> 
+                       <mat-option value="CentralDelhi">Central Delhi</mat-option> 
+                       <mat-option value="Chamarajnagar">Chamarajnagar</mat-option> 
+                       <mat-option value="Chamba">Chamba</mat-option> 
+                       <mat-option value="Chamoli">Chamoli</mat-option> 
+                       <mat-option value="Champawat">Champawat</mat-option> 
+                       <mat-option value="Champhai">Champhai</mat-option> 
+                       <mat-option value="Chandauli">Chandauli</mat-option> 
+                       <mat-option value="Chandel">Chandel</mat-option> 
+                       <mat-option value="Chandigarh">Chandigarh</mat-option> 
+                       <mat-option value="Chandrapur">Chandrapur</mat-option> 
+                       <mat-option value="Changlang">Changlang</mat-option> 
+                       <mat-option value="Chatra">Chatra</mat-option> 
+                       <mat-option value="Chennai">Chennai</mat-option> 
+                       <mat-option value="Chhatarpur">Chhatarpur</mat-option> 
+                       <mat-option value="ChhatrapatiShahujiMaharajNagar"> Chhatrapati Shahuji Maharaj Nagar </mat-option> 
+                       <mat-option value="Chhindwara">Chhindwara</mat-option> 
+                       <mat-option value="Chikkaballapur">Chikkaballapur</mat-option> 
+                       <mat-option value="Chikkamagaluru">Chikkamagaluru</mat-option> 
+                       <mat-option value="Chirang">Chirang</mat-option> 
+                       <mat-option value="Chitradurga">Chitradurga</mat-option> 
+                       <mat-option value="Chitrakoot">Chitrakoot</mat-option> 
+                       <mat-option value="Chittoor">Chittoor</mat-option> 
+                       <mat-option value="Chittorgarh">Chittorgarh</mat-option> 
+                       <mat-option value="Churachandpur">Churachandpur</mat-option> 
+                       <mat-option value="Churu">Churu</mat-option> 
+                       <mat-option value="Coimbatore">Coimbatore</mat-option> 
+                       <mat-option value="CoochBehar">Cooch Behar</mat-option> 
+                       <mat-option value="Cuddalore">Cuddalore</mat-option> 
+                       <mat-option value="Cuttack">Cuttack</mat-option> 
+                       <mat-option value="DadraandNagarHaveli"> Dadra and Nagar Haveli </mat-option> 
+                       <mat-option value="Dahod">Dahod</mat-option> 
+                       <mat-option value="DakshinDinajpur">Dakshin Dinajpur</mat-option> 
+                       <mat-option value="DakshinaKannada">Dakshina Kannada</mat-option> 
+                       <mat-option value="Daman">Daman</mat-option> 
+                       <mat-option value="Damoh">Damoh</mat-option> 
+                       <mat-option value="Dantewada">Dantewada</mat-option> 
+                       <mat-option value="Darbhanga">Darbhanga</mat-option> 
+                       <mat-option value="Darjeeling">Darjeeling</mat-option> 
+                       <mat-option value="Darrang">Darrang</mat-option> 
+                       <mat-option value="Datia">Datia</mat-option> 
+                       <mat-option value="Dausa">Dausa</mat-option> 
+                       <mat-option value="Davanagere">Davanagere</mat-option> 
+                       <mat-option value="Debagarh(Deogarh)">Debagarh (Deogarh)</mat-option> 
+                       <mat-option value="Dehradun">Dehradun</mat-option> 
+                       <mat-option value="Deoghar">Deoghar</mat-option> 
+                       <mat-option value="Deoria">Deoria</mat-option> 
+                       <mat-option value="Dewas">Dewas</mat-option> 
+                       <mat-option value="Dhalai">Dhalai</mat-option> 
+                       <mat-option value="Dhamtari">Dhamtari</mat-option> 
+                       <mat-option value="Dhanbad">Dhanbad</mat-option> 
+                       <mat-option value="Dhar">Dhar</mat-option> 
+                       <mat-option value="Dharmapuri">Dharmapuri</mat-option> 
+                       <mat-option value="Dharwad">Dharwad</mat-option> 
+                       <mat-option value="Dhemaji">Dhemaji</mat-option> 
+                       <mat-option value="Dhenkanal">Dhenkanal</mat-option> 
+                       <mat-option value="Dholpur">Dholpur</mat-option> 
+                       <mat-option value="Dhubri">Dhubri</mat-option> 
+                       <mat-option value="Dhule">Dhule</mat-option> 
+                       <mat-option value="DibangValley">Dibang Valley</mat-option> 
+                       <mat-option value="Dibrugarh">Dibrugarh</mat-option> 
+                       <mat-option value="DimaHasao">Dima Hasao</mat-option> 
+                       <mat-option value="Dimapur">Dimapur</mat-option> 
+                       <mat-option value="Dindigul">Dindigul</mat-option> 
+                       <mat-option value="Dindori">Dindori</mat-option> 
+                       <mat-option value="Diu">Diu</mat-option> 
+                       <mat-option value="Doda">Doda</mat-option> 
+                       <mat-option value="Dumka">Dumka</mat-option> 
+                       <mat-option value="Dungapur">Dungapur</mat-option> 
+                       <mat-option value="Durg">Durg</mat-option> 
+                       <mat-option value="EastChamparan">East Champaran</mat-option> 
+                       <mat-option value="EastDelhi">East Delhi</mat-option> 
+                       <mat-option value="EastGaroHills">East Garo Hills</mat-option> 
+                       <mat-option value="EastKhasiHills">East Khasi Hills</mat-option> 
+                       <mat-option value="EastSiang">East Siang</mat-option> 
+                       <mat-option value="EastSikkim">East Sikkim</mat-option> 
+                       <mat-option value="EastSinghbhum">East Singhbhum</mat-option> 
+                       <mat-option value="Eluru">Eluru</mat-option> 
+                       <mat-option value="Ernakulam">Ernakulam</mat-option> 
+                       <mat-option value="Erode">Erode</mat-option> 
+                       <mat-option value="Etah">Etah</mat-option> 
+                       <mat-option value="Etawah">Etawah</mat-option> 
+                       <mat-option value="Faizabad">Faizabad</mat-option> 
+                       <mat-option value="Faridabad">Faridabad</mat-option> 
+                       <mat-option value="Faridkot">Faridkot</mat-option> 
+                       <mat-option value="Farrukhabad">Farrukhabad</mat-option> 
+                       <mat-option value="Fatehabad">Fatehabad</mat-option> 
+                       <mat-option value="FatehgarhSahib">Fatehgarh Sahib</mat-option> 
+                       <mat-option value="Fatehpur">Fatehpur</mat-option> 
+                       <mat-option value="Fazilka">Fazilka</mat-option> 
+                       <mat-option value="Firozabad">Firozabad</mat-option> 
+                       <mat-option value="Firozpur">Firozpur</mat-option> 
+                       <mat-option value="Gadag">Gadag</mat-option> 
+                       <mat-option value="Gadchiroli">Gadchiroli</mat-option> 
+                       <mat-option value="Gajapati">Gajapati</mat-option> 
+                       <mat-option value="Ganderbal">Ganderbal</mat-option> 
+                       <mat-option value="Gandhinagar">Gandhinagar</mat-option> 
+                       <mat-option value="Ganganagar">Ganganagar</mat-option> 
+                       <mat-option value="Ganjam">Ganjam</mat-option> 
+                       <mat-option value="Garhwa">Garhwa</mat-option> 
+                       <mat-option value="GautamBuddhNagar">Gautam Buddh Nagar</mat-option> 
+                       <mat-option value="Gaya">Gaya</mat-option> 
+                       <mat-option value="Ghaziabad">Ghaziabad</mat-option> 
+                       <mat-option value="Ghazipur">Ghazipur</mat-option> 
+                       <mat-option value="Giridih">Giridih</mat-option> 
+                       <mat-option value="Goalpara">Goalpara</mat-option> 
+                       <mat-option value="Godda">Godda</mat-option> 
+                       <mat-option value="Golaghat">Golaghat</mat-option> 
+                       <mat-option value="Gonda">Gonda</mat-option> 
+                       <mat-option value="Gondia">Gondia</mat-option> 
+                       <mat-option value="Gopalganj">Gopalganj</mat-option> 
+                       <mat-option value="Gorakhpur">Gorakhpur</mat-option> 
+                       <mat-option value="Gulbarga">Gulbarga</mat-option> 
+                       <mat-option value="Gumla">Gumla</mat-option> 
+                       <mat-option value="Guna">Guna</mat-option> 
+                       <mat-option value="Guntur">Guntur</mat-option> 
+                       <mat-option value="Gurdaspur">Gurdaspur</mat-option> 
+                       <mat-option value="Gurgaon">Gurgaon</mat-option> 
+                       <mat-option value="Gwalior">Gwalior</mat-option> 
+                       <mat-option value="Hailakandi">Hailakandi</mat-option> 
+                       <mat-option value="Hamirpur">Hamirpur</mat-option> 
+                       <mat-option value="Hamirpur">Hamirpur</mat-option> 
+                       <mat-option value="Hanumangarh">Hanumangarh</mat-option> 
+                       <mat-option value="Harda">Harda</mat-option> 
+                       <mat-option value="Hardoi">Hardoi</mat-option> 
+                       <mat-option value="Haridwar">Haridwar</mat-option> 
+                       <mat-option value="Hassan">Hassan</mat-option> 
+                       <mat-option value="Haveridistrict">Haveri district</mat-option> 
+                       <mat-option value="Hazaribag">Hazaribag</mat-option> 
+                       <mat-option value="Hingoli">Hingoli</mat-option> 
+                       <mat-option value="Hissar">Hissar</mat-option> 
+                       <mat-option value="Hooghly">Hooghly</mat-option> 
+                       <mat-option value="Hoshangabad">Hoshangabad</mat-option> 
+                       <mat-option value="Hoshiarpur">Hoshiarpur</mat-option> 
+                       <mat-option value="Howrah">Howrah</mat-option> 
+                       <mat-option value="Hyderabad">Hyderabad</mat-option> 
+                       <mat-option value="Hyderabad">Hyderabad</mat-option> 
+                       <mat-option value="Idukki">Idukki</mat-option> 
+                       <mat-option value="ImphalEast">Imphal East</mat-option> 
+                       <mat-option value="ImphalWest">Imphal West</mat-option> 
+                       <mat-option value="Indore">Indore</mat-option> 
+                       <mat-option value="Jabalpur">Jabalpur</mat-option> 
+                       <mat-option value="Jagatsinghpur">Jagatsinghpur</mat-option> 
+                       <mat-option value="JaintiaHills">Jaintia Hills</mat-option> 
+                       <mat-option value="Jaipur">Jaipur</mat-option> 
+                       <mat-option value="Jaisalmer">Jaisalmer</mat-option> 
+                       <mat-option value="Jajpur">Jajpur</mat-option> 
+                       <mat-option value="Jalandhar">Jalandhar</mat-option> 
+                       <mat-option value="Jalaun">Jalaun</mat-option> 
+                       <mat-option value="Jalgaon">Jalgaon</mat-option>
+                        <mat-option value="Jalna">Jalna</mat-option>
+                        <mat-option value="Jalore">Jalore</mat-option>
+                        <mat-option value="Jalpaiguri">Jalpaiguri</mat-option>
+                        <mat-option value="Jammu">Jammu</mat-option>
+                        <mat-option value="Jamnagar">Jamnagar</mat-option>
+                        <mat-option value="Jamtara">Jamtara</mat-option>
+                        <mat-option value="Jamui">Jamui</mat-option>
+                        <mat-option value="Janjgir-Champa">Janjgir-Champa</mat-option>
+                        <mat-option value="Jashpur">Jashpur</mat-option>
+                        <mat-option value="Jaunpurdistrict">Jaunpur district</mat-option>
+                        <mat-option value="Jehanabad">Jehanabad</mat-option>
+                        <mat-option value="Jhabua">Jhabua</mat-option>
+                        <mat-option value="Jhajjar">Jhajjar</mat-option>
+                        <mat-option value="Jhalawar">Jhalawar</mat-option>
+                        <mat-option value="Jhansi">Jhansi</mat-option>
+                        <mat-option value="Jharsuguda">Jharsuguda</mat-option>
+                        <mat-option value="Jhunjhunu">Jhunjhunu</mat-option>
+                        <mat-option value="Jind">Jind</mat-option>
+                        <mat-option value="Jodhpur">Jodhpur</mat-option>
+                        <mat-option value="Jorhat">Jorhat</mat-option>
+                        <mat-option value="Junagadh">Junagadh</mat-option>
+                        <mat-option value="JyotibaPhuleNagar">Jyotiba Phule Nagar</mat-option>
+                        <mat-option value="Kabirdham(formerlyKawardha)"> Kabirdham (formerly Kawardha) </mat-option>
+                        <mat-option value="Kadapa">Kadapa</mat-option>
+                        <mat-option value="Kaimur">Kaimur</mat-option>
+                        <mat-option value="Kaithal">Kaithal</mat-option>
+                        <mat-option value="Kakinada">Kakinada</mat-option>
+                        <mat-option value="Kalahandi">Kalahandi</mat-option>
+                        <mat-option value="Kamrup">Kamrup</mat-option>
+                        <mat-option value="KamrupMetropolitan">Kamrup Metropolitan</mat-option>
+                        <mat-option value="Kanchipuram">Kanchipuram</mat-option>
+                        <mat-option value="Kandhamal">Kandhamal</mat-option>
+                        <mat-option value="Kangra">Kangra</mat-option>
+                        <mat-option value="Kanker">Kanker</mat-option>
+                        <mat-option value="Kannauj">Kannauj</mat-option>
+                        <mat-option value="Kannur">Kannur</mat-option>
+                        <mat-option value="Kanpur">Kanpur</mat-option>
+                        <mat-option value="KanshiRamNagar">Kanshi Ram Nagar</mat-option>
+                        <mat-option value="Kanyakumari">Kanyakumari</mat-option>
+                        <mat-option value="Kapurthala">Kapurthala</mat-option>
+                        <mat-option value="Karaikal">Karaikal</mat-option>
+                        <mat-option value="Karauli">Karauli</mat-option>
+                        <mat-option value="KarbiAnglong">Karbi Anglong</mat-option>
+                        <mat-option value="Kargil">Kargil</mat-option>
+                        <mat-option value="Karimganj">Karimganj</mat-option>
+                        <mat-option value="Karimnagar">Karimnagar</mat-option>
+                        <mat-option value="Karnal">Karnal</mat-option>
+                        <mat-option value="Karur">Karur</mat-option>
+                        <mat-option value="Kasaragod">Kasaragod</mat-option>
+                        <mat-option value="Kathua">Kathua</mat-option>
+                        <mat-option value="Katihar">Katihar</mat-option>
+                        <mat-option value="Katni">Katni</mat-option>
+                        <mat-option value="Kaushambi">Kaushambi</mat-option>
+                        <mat-option value="Kendrapara">Kendrapara</mat-option>
+                        <mat-option value="Kendujhar(Keonjhar)"> Kendujhar (Keonjhar) </mat-option>
+                        <mat-option value="Khagaria">Khagaria</mat-option>
+                        <mat-option value="Khammam">Khammam</mat-option>
+                        <mat-option value="Khandwa(EastNimar)">Khandwa (East Nimar)</mat-option>
+                        <mat-option value="Khargone(WestNimar)"> Khargone (West Nimar) </mat-option>
+                        <mat-option value="Kheda">Kheda</mat-option>
+                        <mat-option value="Khordha">Khordha</mat-option>
+                        <mat-option value="Khowai">Khowai</mat-option>
+                        <mat-option value="Khunti">Khunti</mat-option>
+                        <mat-option value="Kinnaur">Kinnaur</mat-option>
+                        <mat-option value="Kishanganj">Kishanganj</mat-option>
+                        <mat-option value="Kishtwar">Kishtwar</mat-option>
+                        <mat-option value="Kodagu">Kodagu</mat-option>
+                        <mat-option value="Koderma">Koderma</mat-option>
+                        <mat-option value="Kohima">Kohima</mat-option>
+                        <mat-option value="Kokrajhar">Kokrajhar</mat-option>
+                        <mat-option value="Kolar">Kolar</mat-option>
+                        <mat-option value="Kolasib">Kolasib</mat-option>
+                        <mat-option value="Kolhapur">Kolhapur</mat-option>
+                        <mat-option value="Kolkata">Kolkata</mat-option>
+                        <mat-option value="Kollam">Kollam</mat-option>
+                        <mat-option value="Koppal">Koppal</mat-option>
+                        <mat-option value="Koraput">Koraput</mat-option>
+                        <mat-option value="Korba">Korba</mat-option>
+                        <mat-option value="Koriya">Koriya</mat-option>
+                        <mat-option value="Kota">Kota</mat-option>
+                        <mat-option value="Kottayam">Kottayam</mat-option>
+                        <mat-option value="Kozhikode">Kozhikode</mat-option>
+                        <mat-option value="Krishna">Krishna</mat-option>
+                        <mat-option value="Kulgam">Kulgam</mat-option>
+                        <mat-option value="Kullu">Kullu</mat-option>
+                        <mat-option value="Kupwara">Kupwara</mat-option>
+                        <mat-option value="Kurnool">Kurnool</mat-option>
+                        <mat-option value="Kurukshetra">Kurukshetra</mat-option>
+                        <mat-option value="KurungKumey">Kurung Kumey</mat-option>
+                        <mat-option value="Kushinagar">Kushinagar</mat-option>
+                        <mat-option value="Kutch">Kutch</mat-option>
+                        <mat-option value="LahaulandSpiti">Lahaul and Spiti</mat-option>
+                        <mat-option value="Lakhimpur">Lakhimpur</mat-option>
+                        <mat-option value="LakhimpurKheri">Lakhimpur Kheri</mat-option>
+                        <mat-option value="Lakhisarai">Lakhisarai</mat-option>
+                        <mat-option value="Lalitpur">Lalitpur</mat-option>
+                        <mat-option value="Latehar">Latehar</mat-option>
+                        <mat-option value="Latur">Latur</mat-option>
+                        <mat-option value="Lawngtlai">Lawngtlai</mat-option>
+                        <mat-option value="Leh">Leh</mat-option>
+                        <mat-option value="Lohardaga">Lohardaga</mat-option>
+                        <mat-option value="Lohit">Lohit</mat-option>
+                        <mat-option value="LowerDibangValley">Lower Dibang Valley</mat-option>
+                        <mat-option value="LowerSubansiri">Lower Subansiri</mat-option>
+                        <mat-option value="Lucknow">Lucknow</mat-option>
+                        <mat-option value="Ludhiana">Ludhiana</mat-option>
+                        <mat-option value="Lunglei">Lunglei</mat-option>
+                        <mat-option value="Madhepura">Madhepura</mat-option>
+                        <mat-option value="Madhubani">Madhubani</mat-option>
+                        <mat-option value="Madurai">Madurai</mat-option>
+                        <mat-option value="MahamayaNagar">Mahamaya Nagar</mat-option>
+                        <mat-option value="Maharajganj">Maharajganj</mat-option>
+                        <mat-option value="Mahasamund">Mahasamund</mat-option>
+                        <mat-option value="Mahbubnagar">Mahbubnagar</mat-option>
+                        <mat-option value="Mahe">Mahe</mat-option>
+                        <mat-option value="Mahendragarh">Mahendragarh</mat-option>
+                        <mat-option value="Mahoba">Mahoba</mat-option>
+                        <mat-option value="Mainpuri">Mainpuri</mat-option>
+                        <mat-option value="Malappuram">Malappuram</mat-option>
+                        <mat-option value="Maldah">Maldah</mat-option>
+                        <mat-option value="Malkangiri">Malkangiri</mat-option>
+                        <mat-option value="Mamit">Mamit</mat-option>
+                        <mat-option value="Mandi">Mandi</mat-option>
+                        <mat-option value="Mandla">Mandla</mat-option>
+                        <mat-option value="Mandsaur">Mandsaur</mat-option>
+                        <mat-option value="Mandya">Mandya</mat-option>
+                        <mat-option value="Mansa">Mansa</mat-option>
+                        <mat-option value="Marigaon">Marigaon</mat-option>
+                        <mat-option value="Mathura">Mathura</mat-option>
+                        <mat-option value="Mau">Mau</mat-option>
+                        <mat-option value="Mayurbhanj">Mayurbhanj</mat-option>
+                        <mat-option value="Medak">Medak</mat-option>
+                        <mat-option value="Meerut">Meerut</mat-option>
+                        <mat-option value="Mehsana">Mehsana</mat-option>
+                        <mat-option value="Mewat">Mewat</mat-option>
+                        <mat-option value="Mirzapur">Mirzapur</mat-option>
+                        <mat-option value="Moga">Moga</mat-option>
+                        <mat-option value="Mokokchung">Mokokchung</mat-option>
+                        <mat-option value="Mon">Mon</mat-option>
+                        <mat-option value="Moradabad">Moradabad</mat-option>
+                        <mat-option value="Morena">Morena</mat-option>
+                        <mat-option value="MumbaiCity">Mumbai City</mat-option>
+                        <mat-option value="Mumbaisuburban">Mumbai suburban</mat-option>
+                        <mat-option value="Munger">Munger</mat-option>
+                        <mat-option value="Murshidabad">Murshidabad</mat-option>
+                        <mat-option value="Muzaffarnagar">Muzaffarnagar</mat-option>
+                        <mat-option value="Muzaffarpur">Muzaffarpur</mat-option>
+                        <mat-option value="Mysore">Mysore</mat-option>
+                        <mat-option value="Nabarangpur">Nabarangpur</mat-option>
+                        <mat-option value="Nadia">Nadia</mat-option>
+                        <mat-option value="Nagaon">Nagaon</mat-option>
+                        <mat-option value="Nagapattinam">Nagapattinam</mat-option>
+                        <mat-option value="Nagaur">Nagaur</mat-option>
+                        <mat-option value="Nagpur">Nagpur</mat-option>
+                        <mat-option value="Nainital">Nainital</mat-option>
+                        <mat-option value="Nalanda">Nalanda</mat-option>
+                        <mat-option value="Nalbari">Nalbari</mat-option>
+                        <mat-option value="Nalgonda">Nalgonda</mat-option>
+                        <mat-option value="Namakkal">Namakkal</mat-option>
+                        <mat-option value="Nanded">Nanded</mat-option>
+                        <mat-option value="Nandurbar">Nandurbar</mat-option>
+                        <mat-option value="Narayanpur">Narayanpur</mat-option>
+                        <mat-option value="Narmada">Narmada</mat-option>
+                        <mat-option value="Narsinghpur">Narsinghpur</mat-option>
+                        <mat-option value="Nashik">Nashik</mat-option>
+                        <mat-option value="Navsari">Navsari</mat-option>
+                        <mat-option value="Nawada">Nawada</mat-option>
+                        <mat-option value="Nawanshahr">Nawanshahr</mat-option>
+                        <mat-option value="Nayagarh">Nayagarh</mat-option>
+                        <mat-option value="Neemuch">Neemuch</mat-option>
+                        <mat-option value="Nellore">Nellore</mat-option>
+                        <mat-option value="NewDelhi">New Delhi</mat-option>
+                        <mat-option value="Nilgiris">Nilgiris</mat-option>
+                        <mat-option value="Nizamabad">Nizamabad</mat-option>
+                        <mat-option value="North24Parganas">North 24 Parganas</mat-option>
+                        <mat-option value="NorthDelhi">North Delhi</mat-option>
+                        <mat-option value="NorthEastDelhi">North East Delhi</mat-option>
+                        <mat-option value="NorthGoa">North Goa</mat-option>
+                        <mat-option value="NorthSikkim">North Sikkim</mat-option>
+                        <mat-option value="NorthTripura">North Tripura</mat-option>
+                        <mat-option value="NorthWestDelhi">North West Delhi</mat-option>
+                        <mat-option value="Nuapada">Nuapada</mat-option>
+                        <mat-option value="Ongole">Ongole</mat-option>
+                        <mat-option value="Osmanabad">Osmanabad</mat-option>
+                        <mat-option value="Pakur">Pakur</mat-option>
+                        <mat-option value="Palakkad">Palakkad</mat-option>
+                        <mat-option value="Palamu">Palamu</mat-option>
+                        <mat-option value="Pali">Pali</mat-option>
+                        <mat-option value="Palwal">Palwal</mat-option>
+                        <mat-option value="Panchkula">Panchkula</mat-option>
+                        <mat-option value="Panchmahal">Panchmahal</mat-option>
+                        <mat-option value="PanchsheelNagardistrict(Hapur)"> Panchsheel Nagar district (Hapur) </mat-option>
+                        <mat-option value="Panipat">Panipat</mat-option>
+                        <mat-option value="Panna">Panna</mat-option>
+                        <mat-option value="PapumPare">Papum Pare</mat-option>
+                        <mat-option value="Parbhani">Parbhani</mat-option>
+                        <mat-option value="PaschimMedinipur">Paschim Medinipur</mat-option>
+                        <mat-option value="Patan">Patan</mat-option>
+                        <mat-option value="Pathanamthitta">Pathanamthitta</mat-option>
+                        <mat-option value="Pathankot">Pathankot</mat-option>
+                        <mat-option value="Patiala">Patiala</mat-option>
+                        <mat-option value="Patna">Patna</mat-option>
+                        <mat-option value="PauriGarhwal">Pauri Garhwal</mat-option>
+                        <mat-option value="Perambalur">Perambalur</mat-option>
+                        <mat-option value="Phek">Phek</mat-option>
+                        <mat-option value="Pilibhit">Pilibhit</mat-option>
+                        <mat-option value="Pithoragarh">Pithoragarh</mat-option>
+                        <mat-option value="Pondicherry">Pondicherry</mat-option>
+                        <mat-option value="Poonch">Poonch</mat-option>
+                        <mat-option value="Porbandar">Porbandar</mat-option>
+                        <mat-option value="Pratapgarh">Pratapgarh</mat-option>
+                        <mat-option value="Pratapgarh">Pratapgarh</mat-option>
+                        <mat-option value="Pudukkottai">Pudukkottai</mat-option>
+                        <mat-option value="Pulwama">Pulwama</mat-option>
+                        <mat-option value="Pune">Pune</mat-option>
+                        <mat-option value="PurbaMedinipur">Purba Medinipur</mat-option>
+                        <mat-option value="Puri">Puri</mat-option>
+                        <mat-option value="Purnia">Purnia</mat-option>
+                        <mat-option value="Purulia">Purulia</mat-option>
+                        <mat-option value="Raebareli">Raebareli</mat-option>
+                        <mat-option value="Raichur">Raichur</mat-option>
+                        <mat-option value="Raigad">Raigad</mat-option>
+                        <mat-option value="Raigarh">Raigarh</mat-option>
+                        <mat-option value="Raipur">Raipur</mat-option>
+                        <mat-option value="Raisen">Raisen</mat-option>
+                        <mat-option value="Rajauri">Rajauri</mat-option>
+                        <mat-option value="Rajgarh">Rajgarh</mat-option>
+                        <mat-option value="Rajkot">Rajkot</mat-option>
+                        <mat-option value="Rajnandgaon">Rajnandgaon</mat-option> 
+                        <mat-option value="Rajsamand">Rajsamand</mat-option>
+                         <mat-option value="RamabaiNagar(KanpurDehat)"> Ramabai Nagar (Kanpur Dehat) </mat-option>
+                         <mat-option value="Ramanagara">Ramanagara</mat-option>
+                         <mat-option value="Ramanathapuram">Ramanathapuram</mat-option>
+                         <mat-option value="Ramban">Ramban</mat-option>
+                         <mat-option value="Ramgarh">Ramgarh</mat-option>
+                         <mat-option value="Rampur">Rampur</mat-option>
+                         <mat-option value="Ranchi">Ranchi</mat-option>
+                         <mat-option value="Ratlam">Ratlam</mat-option>
+                         <mat-option value="Ratnagiri">Ratnagiri</mat-option>
+                         <mat-option value="Rayagada">Rayagada</mat-option>
+                         <mat-option value="Reasi">Reasi</mat-option>
+                         <mat-option value="Rewa">Rewa</mat-option>
+                         <mat-option value="Rewari">Rewari</mat-option>
+                         <mat-option value="RiBhoi">Ri Bhoi</mat-option>
+                         <mat-option value="Rohtak">Rohtak</mat-option>
+                         <mat-option value="Rohtas">Rohtas</mat-option>
+                         <mat-option value="Rudraprayag">Rudraprayag</mat-option>
+                         <mat-option value="Rupnagar">Rupnagar</mat-option>
+                         <mat-option value="Sabarkantha">Sabarkantha</mat-option>
+                         <mat-option value="Sagar">Sagar</mat-option>
+                         <mat-option value="Saharanpur">Saharanpur</mat-option>
+                         <mat-option value="Saharsa">Saharsa</mat-option>
+                         <mat-option value="Sahibganj">Sahibganj</mat-option>
+                         <mat-option value="Saiha">Saiha</mat-option>
+                         <mat-option value="Salem">Salem</mat-option>
+                         <mat-option value="Samastipur">Samastipur</mat-option>
+                         <mat-option value="Samba">Samba</mat-option>
+                         <mat-option value="Sambalpur">Sambalpur</mat-option>
+                         <mat-option value="Sangli">Sangli</mat-option>
+                         <mat-option value="Sangrur">Sangrur</mat-option>
+                         <mat-option value="SantKabirNagar">Sant Kabir Nagar</mat-option>
+                         <mat-option value="SantRavidasNagar">Sant Ravidas Nagar</mat-option>
+                         <mat-option value="Saran">Saran</mat-option>
+                         <mat-option value="Satara">Satara</mat-option>
+                         <mat-option value="Satna">Satna</mat-option>
+                         <mat-option value="SawaiMadhopur">Sawai Madhopur</mat-option>
+                         <mat-option value="Sehore">Sehore</mat-option>
+                         <mat-option value="Senapati">Senapati</mat-option>
+                         <mat-option value="Seoni">Seoni</mat-option>
+                         <mat-option value="SeraikelaKharsawan">Seraikela Kharsawan</mat-option>
+                         <mat-option value="Serchhip">Serchhip</mat-option>
+                         <mat-option value="Shahdol">Shahdol</mat-option>
+                         <mat-option value="Shahjahanpur">Shahjahanpur</mat-option>
+                         <mat-option value="Shajapur">Shajapur</mat-option>
+                         <mat-option value="Shamli">Shamli</mat-option>
+                         <mat-option value="Sheikhpura">Sheikhpura</mat-option>
+                         <mat-option value="Sheohar">Sheohar</mat-option>
+                         <mat-option value="Sheopur">Sheopur</mat-option>
+                         <mat-option value="Shimla">Shimla</mat-option>
+                         <mat-option value="Shimoga">Shimoga</mat-option>
+                         <mat-option value="Shivpuri">Shivpuri</mat-option>
+                         <mat-option value="Shopian">Shopian</mat-option>
+                         <mat-option value="Shravasti">Shravasti</mat-option>
+                         <mat-option value="Sibsagar">Sibsagar</mat-option>
+                         <mat-option value="Siddharthnagar">Siddharthnagar</mat-option>
+                         <mat-option value="Sidhi">Sidhi</mat-option>
+                         <mat-option value="Sikar">Sikar</mat-option>
+                         <mat-option value="Simdega">Simdega</mat-option>
+                         <mat-option value="Sindhudurg">Sindhudurg</mat-option>
+                         <mat-option value="Singrauli">Singrauli</mat-option>
+                         <mat-option value="Sirmaur">Sirmaur</mat-option>
+                         <mat-option value="Sirohi">Sirohi</mat-option>
+                         <mat-option value="Sirsa">Sirsa</mat-option>
+                         <mat-option value="Sitamarhi">Sitamarhi</mat-option>
+                         <mat-option value="Sitapur">Sitapur</mat-option>
+                         <mat-option value="Sivaganga">Sivaganga</mat-option>
+                         <mat-option value="Siwan">Siwan</mat-option>
+                         <mat-option value="Solan">Solan</mat-option>
+                         <mat-option value="Solapur">Solapur</mat-option>
+                         <mat-option value="Sonbhadra">Sonbhadra</mat-option>
+                         <mat-option value="Sonipat">Sonipat</mat-option>
+                         <mat-option value="Sonitpur">Sonitpur</mat-option>
+                         <mat-option value="South24Parganas">South 24 Parganas</mat-option>
+                         <mat-option value="SouthDelhi">South Delhi</mat-option>
+                         <mat-option value="SouthGaroHills">South Garo Hills</mat-option>
+                         <mat-option value="SouthGoa">South Goa</mat-option>
+                         <mat-option value="SouthSikkim">South Sikkim</mat-option>
+                         <mat-option value="SouthTripura">South Tripura</mat-option>
+                         <mat-option value="SouthWestDelhi">South West Delhi</mat-option>
+                         <mat-option value="SriMuktsarSahib">Sri Muktsar Sahib</mat-option>
+                         <mat-option value="Srikakulam">Srikakulam</mat-option>
+                         <mat-option value="Srinagar">Srinagar</mat-option>
+                         <mat-option value="Subarnapur(Sonepur)"> Subarnapur (Sonepur) </mat-option>
+                         <mat-option value="Sultanpur">Sultanpur</mat-option>
+                         <mat-option value="Sundergarh">Sundergarh</mat-option>
+                         <mat-option value="Supaul">Supaul</mat-option>
+                         <mat-option value="Surat">Surat</mat-option>
+                         <mat-option value="Surendranagar">Surendranagar</mat-option>
+                         <mat-option value="Surguja">Surguja</mat-option>
+                         <mat-option value="Tamenglong">Tamenglong</mat-option>
+                         <mat-option value="TarnTaran">Tarn Taran</mat-option>
+                         <mat-option value="Tawang">Tawang</mat-option>
+                         <mat-option value="TehriGarhwal">Tehri Garhwal</mat-option>
+                         <mat-option value="Thane">Thane</mat-option>
+                         <mat-option value="Thanjavur">Thanjavur</mat-option>
+                         <mat-option value="TheDangs">The Dangs</mat-option>
+                         <mat-option value="Theni">Theni</mat-option>
+                         <mat-option value="Thiruvananthapuram">Thiruvananthapuram</mat-option>
+                         <mat-option value="Thoothukudi">Thoothukudi</mat-option>
+                         <mat-option value="Thoubal">Thoubal</mat-option>
+                         <mat-option value="Thrissur">Thrissur</mat-option>
+                         <mat-option value="Tikamgarh">Tikamgarh</mat-option>
+                         <mat-option value="Tinsukia">Tinsukia</mat-option>
+                         <mat-option value="Tirap">Tirap</mat-option>
+                         <mat-option value="Tiruchirappalli">Tiruchirappalli</mat-option>
+                         <mat-option value="Tirunelveli">Tirunelveli</mat-option>
+                         <mat-option value="Tirupur">Tirupur</mat-option>
+                         <mat-option value="Tiruvallur">Tiruvallur</mat-option>
+                         <mat-option value="Tiruvannamalai">Tiruvannamalai</mat-option>
+                         <mat-option value="Tiruvarur">Tiruvarur</mat-option>
+                         <mat-option value="Tonk">Tonk</mat-option>
+                         <mat-option value="Tuensang">Tuensang</mat-option>
+                         <mat-option value="Tumkur">Tumkur</mat-option>
+                         <mat-option value="Udaipur">Udaipur</mat-option>
+                         <mat-option value="Udalguri">Udalguri</mat-option>
+                         <mat-option value="UdhamSinghNagar">Udham Singh Nagar</mat-option>
+                         <mat-option value="Udhampur">Udhampur</mat-option>
+                         <mat-option value="Udupi">Udupi</mat-option>
+                         <mat-option value="Ujjain">Ujjain</mat-option>
+                         <mat-option value="Ukhrul">Ukhrul</mat-option>
+                         <mat-option value="Umaria">Umaria</mat-option>
+                         <mat-option value="Una">Una</mat-option>
+                         <mat-option value="Unnao">Unnao</mat-option>
+                         <mat-option value="UpperSiang">Upper Siang</mat-option>
+                         <mat-option value="UpperSubansiri">Upper Subansiri</mat-option>
+                         <mat-option value="UttarDinajpur">Uttar Dinajpur</mat-option>
+                         <mat-option value="UttaraKannada">Uttara Kannada</mat-option>
+                         <mat-option value="Uttarkashi">Uttarkashi</mat-option>
+                         <mat-option value="Vadodara">Vadodara</mat-option>
+                         <mat-option value="Vaishali">Vaishali</mat-option>
+                         <mat-option value="Valsad">Valsad</mat-option>
+                         <mat-option value="Varanasi">Varanasi</mat-option>
+                         <mat-option value="Vellore">Vellore</mat-option>
+                         <mat-option value="Vidisha">Vidisha</mat-option>
+                         <mat-option value="Viluppuram">Viluppuram</mat-option>
+                         <mat-option value="Virudhunagar">Virudhunagar</mat-option>
+                         <mat-option value="Visakhapatnam">Visakhapatnam</mat-option>
+                         <mat-option value="Vizianagaram">Vizianagaram</mat-option>
+                         <mat-option value="Vyara">Vyara</mat-option>
+                         <mat-option value="Warangal">Warangal</mat-option>
+                         <mat-option value="Wardha">Wardha</mat-option>
+                         <mat-option value="Washim">Washim</mat-option>
+                         <mat-option value="Wayanad">Wayanad</mat-option>
+                         <mat-option value="WestChamparan">West Champaran</mat-option>
+                         <mat-option value="WestDelhi">West Delhi</mat-option>
+                         <mat-option value="WestGaroHills">West Garo Hills</mat-option>
+                         <mat-option value="WestKameng">West Kameng</mat-option>
+                         <mat-option value="WestKhasiHills">West Khasi Hills</mat-option>
+                         <mat-option value="WestSiang">West Siang</mat-option>
+                         <mat-option value="WestSikkim">West Sikkim</mat-option>
+                         <mat-option value="WestSinghbhum">West Singhbhum</mat-option>
+                         <mat-option value="WestTripura">West Tripura</mat-option>
+                         <mat-option value="Wokha">Wokha</mat-option>
+                         <mat-option value="Yadgir">Yadgir</mat-option>
+                         <mat-option value="YamunaNagar">Yamuna Nagar</mat-option>
+                         <mat-option value="Yanam">Yanam</mat-option>
+                         <mat-option value="Yavatmal">Yavatmal</mat-option>
+                         <mat-option value="Zunheboto">Zunheboto</mat-option> 
+                  
+                  </mat-select>
+                </mat-form-field>
+                <div class="input-group-append">
+                    <button class="subscribe button" (click)="getCity(userinput.value)">search</button>
+                </div>
+              </div>
+          </div>
+          <br><br><br><br><br>  <br><br><br><br>
+          
+          <div class="account1 block"> 
+              <div class ="elcontainer">
+            <div class="element">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.7 40" style="enable-background:new 0 0 60.7 40;" xml:space="preserve">
+                  <g id="Cloud_1">
+                      <g id="White_cloud_1">
+                          <path id="XMLID_2_" class="white" d="M47.2,40H7.9C3.5,40,0,36.5,0,32.1l0,0c0-4.3,3.5-7.9,7.9-7.9h39.4c4.3,0,7.9,3.5,7.9,7.9v0 C55.1,36.5,51.6,40,47.2,40z"/>
+                          <circle id="XMLID_3_" class="white" cx="17.4" cy="22.8" r="9.3"/>
+                          <circle id="XMLID_4_" class="white" cx="34.5" cy="21.1" r="15.6"/>
+                      <animateTransform attributeName="transform"
+                        attributeType="XML"
+                        dur="6s"
+                        keyTimes="0;0.5;1"
+                        repeatCount="indefinite"
+                        type="translate"
+                        values="0;5;0"
+                        calcMode="linear">
+                      </animateTransform>
+                      </g>
+                      <g id="Gray_cloud_1">
+                          <path id="XMLID_6_" class="gray" d="M54.7,22.3H33.4c-3.3,0-6-2.7-6-6v0c0-3.3,2.7-6,6-6h21.3c3.3,0,6,2.7,6,6v0 C60.7,19.6,58,22.3,54.7,22.3z"/>
+                          <circle id="XMLID_7_" class="gray" cx="45.7" cy="10.7" r="10.7"/>
+                      <animateTransform attributeName="transform"
+                        attributeType="XML"
+                        dur="6s"
+                        keyTimes="0;0.5;1"
+                        repeatCount="indefinite"
+                        type="translate"
+                        values="0;-3;0"
+                        calcMode="linear">
+                      </animateTransform>
+                      </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <p class="current-day-date">Pressure : {{weather.main.pressure}}</p>  
+          </div>
+
+          <div class="account block"> 
+            <div class="elright">
+                <p class="current-day-date1">Wind speed : {{weather.wind.speed}} km/hr</p>
+            </div>
+     <div class="elcontainer1">
+            <div class="svg-contain">
+                <svg version="1.1" class="windy-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-447 254.4 64 52.6" style="enable-background:new -447 254.4 64 52.6;" xml:space="preserve">
+            <g id="Layer_1_1_">
+                <g>
+                    <path class="st0 little-path path-1" d="M-429.2,276.8h6.3"/>
+                    <path class="big-path big-path-1" d="M-438.1,279.3c0,0,20.5,0,20.6,0c4.1,0,7.4-3.4,7.7-7.4c0.1-1.1-0.1-2.3-0.6-3.3c-2.2-5.4-9.8-6.3-13.3-1.7
+                        c-1,1.3-1.6,3-1.7,4.6"/>
+                    <path class="little-path path-2" d="M-422.6,271.7c0-2.8,2.3-5.1,5.1-5.1s5.1,2.3,5.1,5.1c0,2.8-2.3,5.1-5.1,5.1"/>
+                </g>
+                <g>
+                    <path class="little-path path-3" d="M-434.1,284.9h30.4"/>
+                    <path class="little-path path-4" d="M-410.6,280h8.7"/>
+                    <path class="big-path big-path-2" d="M-442.9,282.7h44c3.6,0,6.6,3,6.8,6.5c0.1,1-0.1,2-0.5,3c-2,4.8-8.7,5.5-11.8,1.5c-0.9-1.2-1.4-2.6-1.5-4.1"/>
+                    <path class="little-path path-5" d="M-403.4,289.4c0,2.5,2,4.5,4.5,4.5s4.5-2,4.5-4.5s-2-4.5-4.5-4.5"/>
+                </g>
+            </g>
+            </svg>
+          
+            </div>
+          </div>
+     </div>
+        
+      </div> <!-- end right-container -->
+  </div> <!-- end main-container -->
+</body>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,135 @@
+
+
+
+
+
+        <div id="mainbox1">
+          <main class="container">
+            <div class="box">
+              <div class="temp-card">
+                <div class="city-info">
+                  
+<label for="cars">Choose a place:</label>
+
+<select name="loc" id="loc">
+  <option value="New york">New york</option>
+  <option value="Berlin">Berlin</option>
+  <option value="Hyderabad">Hyderabad</option>
+  <option value="Chennai">Chennai</option>
+</select>
+                  <h2>{{weatherdata.name}}</h2>
+                  <p>{{weatherdata.name}}</p>
+                  <img
+                    src="https://freepngimg.com/thumb/weather/23698-6-weather-transparent-background.png"
+                    alt="Sun Half visible ahead of Clouds"
+                       class = "cloudy-img"
+                  />
+                  <h6 class="cloudy-text">Cloudy</h6>
+                </div>
+                <div class="readings">
+                  <span class = "big-text">72</span><span class="degree">&#176;</span>
+                  <div class="sub-readings">
+                    <span class = "medium-text">81<span>&#176;</span> / </span>
+                    <span id="blue-text" class = "medium-text">57<span>&#176;</span></span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="temp-time">
+                <mat-tab-group mat-align-tabs="start">
+                 
+                <ul>
+                  <mat-tab label="First">
+                  <li class = "active">
+                    <a href="#">Hourly</a>
+                  </li>
+                </mat-tab>
+                <mat-tab label="First">
+                  <li>
+                    <a href="#">Daily</a>
+                  </li>
+                  </mat-tab>
+                  <mat-tab label="First">
+                  <li>
+                    <a href="#">Details</a>
+                  </li>
+                  </mat-tab>
+                </ul>
+              </mat-tab-group>
+              </div>
+        
+            </div>
+          </main>  
+        </div>
+        
+
+
+
+
+
+
+        <!-- <div class="content_wrapper" id="app">
+          <div v-if="infos.city">
+            <h1>
+              Weather
+              <div class="date">{{weatherdata.name}}</div>
+            </h1>
+        
+            <div class="weather_card">
+              <div class="weather_card_img" :style="{backgroundImage: weatherImg}">
+                <div class="weather_card_state">
+                  <span class="material-icons">
+                    Wind: {{weatherdata.wind.speed}} Km/h
+                  </span>
+                </div>
+              </div>
+        
+              <div class="weather_card_infos">
+                <div class="weather_card_infos_title">
+                  Humidity:{{weatherdata.main.humidity}}
+                </div>
+                <div class="weather_card_infos_temp">
+                  Visibility : {{weatherdata.visibility}}
+                </div>
+                <div class="bottom">
+                  <hr>
+                  <div class="weather_card_infos_bottom">
+                    Temp max/min: {{weatherdata.temp_max}}°/{{weatherdata.temp_min}}°
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+
+        <!-- <section class="weather-search">
+          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <label for="city">City</label>
+            <input ngControl="location" type="text" id="city" required>
+            <button type="submit">Submit</button>
+            </form>
+            <div>
+              <span class="info">city</span>
+              </div>
+        </section> -->
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+  
+
+
